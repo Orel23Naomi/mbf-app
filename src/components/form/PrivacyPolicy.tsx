@@ -7,10 +7,9 @@ const PrivacyPolicy: React.FC = () => {
     <Form.Item
       name="privacyPolicy"
       valuePropName="checked"
-      rules={[{ required: true, message: 'Per favore accetta la Privacy Policy!' }]}
-    >
+      rules={[{ required: true, message: 'Per favore accetta la Privacy Policy!' }]}>
       <Checkbox>
-        Ho letto e accetto la <a href="https://www.iubenda.com/privacy-policy/45053967" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        Ho letto e accetto la <a href="https://www.iubenda.com/privacy-policy/18768928" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
       </Checkbox>
     </Form.Item>
   );

@@ -7,7 +7,7 @@ const { Footer } = Layout;
 
 const CustomFooter: React.FC = () => {
     return (
-        <Footer style={{ backgroundColor: '#f0f2f5', padding: '20px 0' }}>
+        <Footer style={{ textAlign: 'center' , backgroundColor: '#f0f2f5', padding: '20px 0' }}>
             <div className="container">
                 <Row justify="center">
                     <Col span={24} style={{ textAlign: 'center' }}>
