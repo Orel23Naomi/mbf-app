@@ -1,0 +1,11 @@
+declare module 'aboutUs/AboutUs';
+declare module 'aboutUs/CustomFooter';
+declare module 'ourServices/OurServices';
+declare module 'maintenanceSchedule/MaintenanceSchedule';
+declare module 'profesional/RequestQuoteForm';
+declare module 'profesional/PersonalInfo';
+declare module 'profesional/AddressInfo';
+declare module 'profesional/PrivacyPolicy';
+declare module 'profesional/ProjectDetails';
+declare module 'profesional/AreaSlider';
+declare module 'profesional/SpaceSelect';

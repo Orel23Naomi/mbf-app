@@ -1,10 +1,10 @@
 // src/components/RequestQuoteForm.tsx
 import React, { useEffect } from 'react';
 import { Form, Button, Row, Col, Select,Typography } from 'antd';
-import PersonalInfo from './form/PersonalInfo';
-import AddressInfo from './form/AddressInfo';
-import ProjectDetails from './form/ProjectDetails';
-import PrivacyPolicy from './form/PrivacyPolicy';
+import PersonalInfo from './PersonalInfo';
+import AddressInfo from './AddressInfo';
+import ProjectDetails from './ProjectDetails';
+import PrivacyPolicy from './PrivacyPolicy';
 
 const { Title, Paragraph } = Typography;
 const { Option } = Select;
