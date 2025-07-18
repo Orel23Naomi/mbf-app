@@ -1,11 +1,14 @@
 import { Helmet } from 'react-helmet';
 import './App.css';
-import StickyHeader from './components/StickyHeader';
-import AboutUs from './components/AboutUs';
-import OurServices from './components/OurServices';
-import MaintenanceSchedule from './components/MaintenanceSchedule';
-import RequestQuoteForm from './components/RequestQuoteForm';
-import CustomFooter from './components/CustomFooter';
+import React, { Suspense } from 'react';
+import StickyHeader from './shared/StickyHeader';
+import './shared/StickyHeader.css';
+const AboutUs = React.lazy(() => import('aboutUs/AboutUs'));
+const CustomFooter = React.lazy(() => import('aboutUs/CustomFooter'));
+const RequestQuoteForm = React.lazy(() => import('profesional/RequestQuoteForm'));
+const OurServices = React.lazy(() => import('ourServices/OurServices'));
+const MaintenanceSchedule = React.lazy(() => import('maintenanceSchedule/MaintenanceSchedule'));
+
 
 function App() {
   return (
@@ -39,12 +42,14 @@ function App() {
       </Helmet>
      <StickyHeader/>
      <div className='main-content'>
-      <AboutUs></AboutUs>
-      <RequestQuoteForm></RequestQuoteForm>
-      <OurServices></OurServices>
-      <MaintenanceSchedule></MaintenanceSchedule>
-      <CustomFooter></CustomFooter>
-     </div>
+          <Suspense fallback={<div>Loading...</div>}>
+          <AboutUs />
+          <RequestQuoteForm />
+          <OurServices />
+          <MaintenanceSchedule />
+          <CustomFooter />
+        </Suspense>
+      </div>
     </div>
   );
 }

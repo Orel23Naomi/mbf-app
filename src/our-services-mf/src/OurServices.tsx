@@ -1,5 +1,6 @@
-import React from 'react';
-import GenericList from './GenericList';
+import React, { Suspense } from 'react';
+
+const GenericList = React.lazy(() => import('genericList/GenericList'));
 
 const OurServices: React.FC = () => {
   const services = [
@@ -26,11 +27,13 @@ const OurServices: React.FC = () => {
   ];
 
   return (
-    <GenericList
-      title="I Nostri Servizi"
-      description=""
-      items={services}
-    />
+    <Suspense fallback={<div>Caricamento servizi...</div>}>
+      <GenericList
+        title="I Nostri Servizi"
+        description=""
+        items={services}
+      />
+    </Suspense>
   );
 };
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import GenericList from './GenericList';
+import React, { Suspense } from 'react';
+const GenericList = React.lazy(() => import('genericList/GenericList'));
 
 const MaintenanceSchedule: React.FC = () => {
   const maintenanceItems = [
@@ -22,11 +22,13 @@ const MaintenanceSchedule: React.FC = () => {
   ];
 
   return (
-    <GenericList
-      title="Quando Fare la Manutenzione"
-      description="La manutenzione regolare è essenziale per garantire la sicurezza e l'efficienza degli impianti della vostra casa. Ecco alcuni consigli su quando effettuare la manutenzione:"
-      items={maintenanceItems}
-    />
+     <Suspense fallback={<div>Caricamento lista...</div>}>
+      <GenericList
+        title="Quando Fare la Manutenzione"
+        description="La manutenzione regolare è essenziale per garantire la sicurezza e l'efficienza degli impianti della vostra casa. Ecco alcuni consigli su quando effettuare la manutenzione:"
+        items={maintenanceItems}
+      />
+  </Suspense>
   );
 };
 
