@@ -1,53 +1,40 @@
 {
-  "name": "mbf-app",
-  "version": "0.1.0",
+  "name": "allianz-front-end",
   "private": true,
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-brands-svg-icons": "^6.7.2",
-    "@fortawesome/react-fontawesome": "^0.2.2",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.125",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "ajv": "^8.17.1",
-    "ajv-keywords": "^5.1.0",
-    "antd": "^5.23.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-helmet": "^6.1.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "start": "concurrently \"npm run start:core\" \"npm run start:about-us\" \"npm run start:our-services\" \"npm run start:maintenance\" \"npm run start:profesional\" \"npm run start:generic-list\"",
+    "start:core": "cd packages/core-shell && npm start",
+    "start:about-us": "cd packages/about-us-mf && npm start",
+    "start:our-services": "cd packages/our-services-mf && npm start", 
+    "start:maintenance": "cd packages/maintenance-schedule-mf && npm start",
+    "start:profesional": "cd packages/profesional-mf && npm start",
+    "start:generic-list": "cd packages/generic-list-mf && npm start",
+    "build": "npm run build --workspaces --if-present",
+    "build:prod": "npm run clean && npm run setup && npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "clean": "rm -rf packages/*/dist packages/*/node_modules node_modules",
+    "build:static": "npm run build:prod && npm run copy:static",
+    "copy:static": "mkdir -p dist/static && cp -r packages/core-shell/dist/* dist/static/ && for pkg in packages/*/dist/remoteEntry.js; do cp \"$pkg\" dist/static/$(basename $(dirname $(dirname \"$pkg\")))-$(basename \"$pkg\"); done",
+    "setup": "npm config set registry https://registry.npmjs.org/ && npm install --no-audit --no-fund --legacy-peer-deps"
   },
   "devDependencies": {
-    "@types/react-helmet": "^6.1.11"
+    "concurrently": "^9.1.2",
+    "glob": "^10.3.10",
+    "husky": "^9.0.11",
+    "lru-cache": "^10.2.0",
+    "rimraf": "^5.0.5"
+  },
+  "resolutions": {
+    "glob": "^10.3.10",
+    "rimraf": "^5.0.5",
+    "inflight": "npm:lru-cache@^10.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }
